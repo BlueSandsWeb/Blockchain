@@ -170,6 +170,7 @@ def mine():
             'transactions': block['transactions'],
             'proof': block['proof'],
             'previous_hash': block['previous_hash'],
+            'coin': 1
         }
         
         return jsonify(response), 200
@@ -177,11 +178,7 @@ def mine():
     else :
         #  --- proof is incorrect, send refusal
         response = {
-            'message': "Nope",
-            # 'index': block['index'],
-            # 'transactions': block['transactions'],
-            # 'proof': block['proof'],
-            # 'previous_hash': block['previous_hash'],
+            'message': "Sorry, that proof won't work, try again",
         }
         return jsonify(response), 400
 

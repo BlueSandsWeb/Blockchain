@@ -51,11 +51,16 @@ if __name__ == '__main__':
 
         print("NEW PROOF: ", new_proof)
         # TODO: When found, POST it to the server {"proof": new_proof}
-        success = requests.post(url = f'{node}/mine', json = data)
-        print("success: ", success)
+        post_response = requests.post(url = f'{node}/mine', json = data)
+        message = post_response.json()['message']
 
         # TODO: If the server responds with 'New Block Forged'
-        # add 1 to the number of coins mined and print it.  Otherwise,
-        # print the message from the server.
+        if message == 'New Block Forged':
+            coins_mined += 1
+            print("coins mined: ", coins_mined)
+            # add 1 to the number of coins mined and print it.  Otherwise,
+        else:
+            print(f'{message}')
+            # print the message from the server.
         pass
 
